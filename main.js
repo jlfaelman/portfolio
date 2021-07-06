@@ -1,25 +1,15 @@
-$(document).ready(() => {
-    $('.dropdown-trigger').dropdown();
-    $('.carousel.carousel-slider').carousel({
-        fullWidth: true,
-        indicators: true
-    });
+const express  = require('express');
+const app = express();
+require('dotenv').config()
+
+app.set('view engine','ejs')
+app.use(express.static("public"));
 
 
+app.get('/',(req,res)=>{
+    res.render('index');
+});
 
-    $("#btn-about").click(function () {
-        $('html, body').animate({
-            scrollTop: $("#aboutme").offset().top
-        }, 500);
-    });
-    $("#btn-work").click(function () {
-        $('html, body').animate({
-            scrollTop: $("#mywork").offset().top
-        }, 500);
-    });
-    $("#btn-contact").click(function () {
-        $('html, body').animate({
-            scrollTop: $("#contactme").offset().top
-        }, 500);
-    });
+app.listen(process.env.PORT,()=>{
+    console.log('listening at http://localhost:3000');
 })
